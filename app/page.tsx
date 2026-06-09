@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 
 type ScheduleItem = {
   time: string;
@@ -196,21 +196,6 @@ export default function Home() {
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [locationStatus, setLocationStatus] = useState("現在地を取得すると、近くの施設をGoogle Mapsで検索できます。" );
 
-  const selectedDay = useMemo(
-    () => schedule.find((day) => day.date === selectedDate) ?? schedule[0],
-    [selectedDate],
-  );
-
-  useEffect(() => {
-    const nextOpenState: Record<string, boolean> = {};
-
-    selectedDay.items.forEach((_, index) => {
-      nextOpenState[`${selectedDay.date}-${index}`] = true;
-    });
-
-    setOpenItems(nextOpenState);
-  }, [selectedDay]);
-
   const toggleItem = (key: string) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -281,97 +266,101 @@ export default function Home() {
             <div className="mt-4 flex flex-col gap-3">
               {schedule.map((day) => {
                 const selected = day.date === selectedDate;
+
                 return (
-                  <button
-                    key={day.date}
-                    type="button"
-                    onClick={() => setSelectedDate(day.date)}
-                    className={`w-full rounded-[24px] border p-4 text-left transition duration-200 ${
-                      selected
-                        ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
-                        : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
-                    }`}
-                  >
-                    <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{day.date}</p>
-                    <p className="mt-1 text-base font-black text-slate-900">{day.label}</p>
-                    <p className="mt-1 text-xs text-slate-600">{day.summary}</p>
-                  </button>
+                  <div key={day.date} className="flex flex-col gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedDate(day.date)}
+                      className={`w-full rounded-[24px] border p-4 text-left transition duration-200 ${
+                        selected
+                          ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
+                          : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
+                      }`}
+                    >
+                      <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{day.date}</p>
+                      <p className="mt-1 text-base font-black text-slate-900">{day.label}</p>
+                      <p className="mt-1 text-xs text-slate-600">{day.summary}</p>
+                    </button>
+
+                    {selected && (
+                      <article className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
+                        <div className="flex items-start justify-between gap-3 rounded-[24px] border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
+                          <div>
+                            <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">This Day</p>
+                            <h3 className="text-xl font-black text-slate-900">{day.date} {day.label}</h3>
+                            <p className="mt-1 text-sm text-slate-600">{day.summary}</p>
+                          </div>
+                          <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white shadow-sm">{day.items.length} 件</span>
+                        </div>
+
+                        <div className="mt-4 space-y-3">
+                          {day.items.map((item, index) => {
+                            const key = `${day.date}-${index}`;
+                            const isOpen = Boolean(openItems[key]);
+
+                            return (
+                              <article
+                                key={key}
+                                className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-sky-200 hover:shadow-md"
+                              >
+                                <button
+                                  type="button"
+                                  onClick={() => toggleItem(key)}
+                                  className="w-full text-left"
+                                  aria-expanded={isOpen}
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <div className="min-w-[72px] rounded-2xl bg-[linear-gradient(135deg,#fef3c7_0%,#fde68a_100%)] px-3 py-2 text-center text-sm font-black text-amber-900 shadow-sm">{item.time}</div>
+                                    <div className="flex-1">
+                                      <p className="text-base font-black text-slate-900">{item.title}</p>
+                                      {item.kind && <p className="text-xs text-emerald-700">{item.kind}</p>}
+                                      {item.location && <p className="mt-1 text-sm text-slate-600">場所: {item.location}</p>}
+                                      {item.venue && <p className="mt-1 text-sm text-slate-600">{item.venue}</p>}
+                                    </div>
+                                    <span className="text-xs font-semibold text-sky-700">{isOpen ? "閉じる" : "詳細"}</span>
+                                  </div>
+                                </button>
+
+                                {isOpen && (
+                                  <div className="mt-4 rounded-2xl bg-slate-50 p-3 text-sm text-slate-700">
+                                    {item.memo && <p className="leading-6">{item.memo}</p>}
+                                    {item.url && (
+                                      <div className="mt-3 flex flex-wrap gap-2">
+                                        <a
+                                          href={item.url}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
+                                        >
+                                          詳細ページを開く
+                                        </a>
+                                      </div>
+                                    )}
+                                    {item.mapUrl && (
+                                      <div className="mt-2 flex flex-wrap gap-2">
+                                        <a
+                                          href={item.mapUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+                                        >
+                                          地図を開く
+                                        </a>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </article>
+                            );
+                          })}
+                        </div>
+                      </article>
+                    )}
+                  </div>
                 );
               })}
             </div>
-
-            <article className="mt-4 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
-              <div className="flex items-start justify-between gap-3 rounded-[24px] border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">Selected</p>
-                  <h3 className="text-xl font-black text-slate-900">{selectedDay.date} {selectedDay.label}</h3>
-                  <p className="mt-1 text-sm text-slate-600">{selectedDay.summary}</p>
-                </div>
-                <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white shadow-sm">{selectedDay.items.length} 件</span>
-              </div>
-
-              <div className="mt-4 space-y-3">
-                {selectedDay.items.map((item, index) => {
-                  const key = `${selectedDay.date}-${index}`;
-                  const isOpen = Boolean(openItems[key]);
-
-                  return (
-                    <article
-                      key={key}
-                      className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-sky-200 hover:shadow-md"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => toggleItem(key)}
-                        className="w-full text-left"
-                        aria-expanded={isOpen}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="min-w-[72px] rounded-2xl bg-[linear-gradient(135deg,#fef3c7_0%,#fde68a_100%)] px-3 py-2 text-center text-sm font-black text-amber-900 shadow-sm">{item.time}</div>
-                          <div className="flex-1">
-                            <p className="text-base font-black text-slate-900">{item.title}</p>
-                            {item.kind && <p className="text-xs text-emerald-700">{item.kind}</p>}
-                            {item.location && <p className="mt-1 text-sm text-slate-600">場所: {item.location}</p>}
-                            {item.venue && <p className="mt-1 text-sm text-slate-600">{item.venue}</p>}
-                          </div>
-                          <span className="text-xs font-semibold text-sky-700">{isOpen ? "閉じる" : "詳細"}</span>
-                        </div>
-                      </button>
-
-                      {isOpen && (
-                        <div className="mt-4 rounded-2xl bg-slate-50 p-3 text-sm text-slate-700">
-                          {item.memo && <p className="leading-6">{item.memo}</p>}
-                          {item.url && (
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              <a
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
-                              >
-                                詳細ページを開く
-                              </a>
-                            </div>
-                          )}
-                          {item.mapUrl && (
-                            <div className="mt-2 flex flex-wrap gap-2">
-                              <a
-                                href={item.mapUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
-                              >
-                                地図を開く
-                              </a>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </article>
-                  );
-                })}
-              </div>
-            </article>
           </div>
         </section>
 
