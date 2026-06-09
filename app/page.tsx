@@ -265,7 +265,7 @@ export default function Home() {
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">日付を選んでください</span>
             </div>
 
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-4 flex flex-col gap-3">
               {schedule.map((day) => {
                 const selected = day.date === selectedDate;
                 return (
@@ -273,7 +273,7 @@ export default function Home() {
                     key={day.date}
                     type="button"
                     onClick={() => setSelectedDate(day.date)}
-                    className={`rounded-3xl border p-3 text-left transition ${
+                    className={`w-full rounded-3xl border p-3 text-left transition ${
                       selected
                         ? "border-sky-500 bg-sky-50 shadow-sm"
                         : "border-slate-200 bg-white hover:border-sky-200 hover:bg-sky-50/70"
