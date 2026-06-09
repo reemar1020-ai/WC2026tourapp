@@ -192,15 +192,24 @@ const schedule: TravelDay[] = [
 const nearbyCategories = ["レストラン", "コンビニ", "カフェ"] as const;
 
 export default function Home() {
-  const [selectedDate, setSelectedDate] = useState("6/24");
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
   const [locationStatus, setLocationStatus] = useState("現在地を取得すると、近くの施設をGoogle Mapsで検索できます。" );
+
+  const selectedDay = selectedDate
+    ? schedule.find((day) => day.date === selectedDate) ?? null
+    : null;
 
   const toggleItem = (key: string) => {
     setOpenItems((prev) => ({
       ...prev,
       [key]: !prev[key],
     }));
+  };
+
+  const handleDateSelect = (date: string) => {
+    setSelectedDate((prev) => (prev === date ? null : date));
+    setOpenItems({});
   };
 
   const openNearbySearch = (category: string) => {
@@ -235,24 +244,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fbff_38%,_#eef4ff_100%)] text-slate-900">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col pb-28">
-        <header className="px-4 pt-4 pb-2 sm:px-6">
-          <div className="rounded-[30px] border border-white/80 bg-white/90 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-6">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-[11px] uppercase tracking-[0.35em] text-emerald-600">USA Tour Guide</p>
-              <span className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">スマホ最適化</span>
-            </div>
-            <h1 className="mt-3 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">アメリカ旅行しおり</h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">
-              6/24〜7/1 の旅程を、見やすいカードと直感的な操作で確認できるモダンなしおりです。
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-700">
-              <span className="rounded-full bg-amber-100 px-3 py-1 font-semibold text-amber-800 shadow-sm">Google Maps 連携</span>
-              <span className="rounded-full bg-sky-100 px-3 py-1 font-semibold text-sky-800 shadow-sm">現在地検索対応</span>
-              <span className="rounded-full bg-emerald-100 px-3 py-1 font-semibold text-emerald-800 shadow-sm">初心者向けUI</span>
-            </div>
-          </div>
-        </header>
-
         <section className="px-4 sm:px-6">
           <div className="rounded-[30px] border border-white/80 bg-white/90 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-5">
             <div className="flex items-center justify-between gap-3">
@@ -260,35 +251,38 @@ export default function Home() {
                 <p className="text-xs uppercase tracking-[0.25em] text-sky-700">Schedule</p>
                 <h2 className="text-lg font-bold text-slate-900">タイムスケジュール表</h2>
               </div>
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">日付を選んでください</span>
             </div>
 
             <div className="mt-4 flex flex-col gap-3">
               {schedule.map((day) => {
                 const selected = day.date === selectedDate;
+                const isMatchDay = ["6/25", "6/26", "6/29"].includes(day.date);
 
                 return (
                   <div key={day.date} className="flex flex-col gap-3">
                     <button
                       type="button"
-                      onClick={() => setSelectedDate(day.date)}
+                      onClick={() => handleDateSelect(day.date)}
                       className={`w-full rounded-[24px] border p-4 text-left transition duration-200 ${
                         selected
                           ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
                           : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
                       }`}
                     >
-                      <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{day.date}</p>
-                      <p className="mt-1 text-base font-black text-slate-900">{day.label}</p>
-                      <p className="mt-1 text-xs text-slate-600">{day.summary}</p>
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">DATE</p>
+                          <p className="mt-1 text-xl font-black tracking-[0.02em] text-slate-900">{day.date}</p>
+                          <p className="mt-1 text-base font-semibold text-slate-700">{day.label}{isMatchDay ? " ★" : ""}</p>
+                        </div>
+                        <span className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">{day.items.length} 件</span>
+                      </div>
                     </button>
 
                     {selected && (
                       <article className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
                         <div className="flex items-start justify-between gap-3 rounded-[24px] border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
                           <div>
-                            <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">This Day</p>
-                            <h3 className="text-xl font-black text-slate-900">{day.date} {day.label}</h3>
                             <p className="mt-1 text-sm text-slate-600">{day.summary}</p>
                           </div>
                           <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white shadow-sm">{day.items.length} 件</span>
@@ -315,8 +309,11 @@ export default function Home() {
                                     <div className="flex-1">
                                       <p className="text-base font-black text-slate-900">{item.title}</p>
                                       {item.kind && <p className="text-xs text-emerald-700">{item.kind}</p>}
-                                      {item.location && <p className="mt-1 text-sm text-slate-600">場所: {item.location}</p>}
-                                      {item.venue && <p className="mt-1 text-sm text-slate-600">{item.venue}</p>}
+                                      {item.venue ? (
+                                        <p className="mt-1 text-sm text-slate-600">{item.venue}</p>
+                                      ) : item.location ? (
+                                        <p className="mt-1 text-sm text-slate-600">場所: {item.location}</p>
+                                      ) : null}
                                     </div>
                                     <span className="text-xs font-semibold text-sky-700">{isOpen ? "閉じる" : "詳細"}</span>
                                   </div>
