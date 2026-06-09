@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type ScheduleItem = {
   time: string;
@@ -201,6 +201,16 @@ export default function Home() {
     [selectedDate],
   );
 
+  useEffect(() => {
+    const nextOpenState: Record<string, boolean> = {};
+
+    selectedDay.items.forEach((_, index) => {
+      nextOpenState[`${selectedDay.date}-${index}`] = true;
+    });
+
+    setOpenItems(nextOpenState);
+  }, [selectedDay]);
+
   const toggleItem = (key: string) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -238,25 +248,28 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#fffaf5_0%,#eff6ff_45%,#f8fafc_100%)] text-slate-900">
+    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fbff_38%,_#eef4ff_100%)] text-slate-900">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col pb-28">
         <header className="px-4 pt-4 pb-2 sm:px-6">
-          <div className="rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-emerald-600">USA Tour Guide</p>
-            <h1 className="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">アメリカ旅行しおり</h1>
-            <p className="mt-2 text-sm text-slate-600 sm:text-base">
-              6/24〜7/1 の日程を見やすくまとめた、スマホ向けのタイムスケジュール表と近隣施設検索のアプリです。
+          <div className="rounded-[30px] border border-white/80 bg-white/90 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-6">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[11px] uppercase tracking-[0.35em] text-emerald-600">USA Tour Guide</p>
+              <span className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">スマホ最適化</span>
+            </div>
+            <h1 className="mt-3 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">アメリカ旅行しおり</h1>
+            <p className="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">
+              6/24〜7/1 の旅程を、見やすいカードと直感的な操作で確認できるモダンなしおりです。
             </p>
             <div className="mt-4 flex flex-wrap gap-2 text-xs text-slate-700">
-              <span className="rounded-full bg-amber-100 px-3 py-1 font-semibold text-amber-800">Google Maps 連携</span>
-              <span className="rounded-full bg-sky-100 px-3 py-1 font-semibold text-sky-800">現在地検索対応</span>
-              <span className="rounded-full bg-emerald-100 px-3 py-1 font-semibold text-emerald-800">初心者向けUI</span>
+              <span className="rounded-full bg-amber-100 px-3 py-1 font-semibold text-amber-800 shadow-sm">Google Maps 連携</span>
+              <span className="rounded-full bg-sky-100 px-3 py-1 font-semibold text-sky-800 shadow-sm">現在地検索対応</span>
+              <span className="rounded-full bg-emerald-100 px-3 py-1 font-semibold text-emerald-800 shadow-sm">初心者向けUI</span>
             </div>
           </div>
         </header>
 
         <section className="px-4 sm:px-6">
-          <div className="rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
+          <div className="rounded-[30px] border border-white/80 bg-white/90 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-5">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-sky-700">Schedule</p>
@@ -273,10 +286,10 @@ export default function Home() {
                     key={day.date}
                     type="button"
                     onClick={() => setSelectedDate(day.date)}
-                    className={`w-full rounded-3xl border p-3 text-left transition ${
+                    className={`w-full rounded-[24px] border p-4 text-left transition duration-200 ${
                       selected
-                        ? "border-sky-500 bg-sky-50 shadow-sm"
-                        : "border-slate-200 bg-white hover:border-sky-200 hover:bg-sky-50/70"
+                        ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
+                        : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
                     }`}
                   >
                     <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{day.date}</p>
@@ -287,14 +300,14 @@ export default function Home() {
               })}
             </div>
 
-            <article className="mt-4 rounded-[24px] border border-slate-200 bg-slate-50 p-4 sm:p-5">
-              <div className="flex items-start justify-between gap-3">
+            <article className="mt-4 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
+              <div className="flex items-start justify-between gap-3 rounded-[24px] border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-sky-700">Selected</p>
+                  <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">Selected</p>
                   <h3 className="text-xl font-black text-slate-900">{selectedDay.date} {selectedDay.label}</h3>
                   <p className="mt-1 text-sm text-slate-600">{selectedDay.summary}</p>
                 </div>
-                <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">{selectedDay.items.length} 件</span>
+                <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white shadow-sm">{selectedDay.items.length} 件</span>
               </div>
 
               <div className="mt-4 space-y-3">
@@ -305,7 +318,7 @@ export default function Home() {
                   return (
                     <article
                       key={key}
-                      className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-slate-100"
+                      className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm ring-1 ring-slate-100 transition hover:border-sky-200 hover:shadow-md"
                     >
                       <button
                         type="button"
@@ -314,7 +327,7 @@ export default function Home() {
                         aria-expanded={isOpen}
                       >
                         <div className="flex items-start gap-3">
-                          <div className="min-w-[72px] rounded-2xl bg-amber-100 px-3 py-2 text-center text-sm font-black text-amber-900 shadow-sm">{item.time}</div>
+                          <div className="min-w-[72px] rounded-2xl bg-[linear-gradient(135deg,#fef3c7_0%,#fde68a_100%)] px-3 py-2 text-center text-sm font-black text-amber-900 shadow-sm">{item.time}</div>
                           <div className="flex-1">
                             <p className="text-base font-black text-slate-900">{item.title}</p>
                             {item.kind && <p className="text-xs text-emerald-700">{item.kind}</p>}
@@ -379,7 +392,7 @@ export default function Home() {
                   key={category}
                   type="button"
                   onClick={() => openNearbySearch(category)}
-                  className="rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4 text-left shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50"
+                  className="rounded-[24px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] px-4 py-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-md"
                 >
                   <p className="text-sm font-semibold text-slate-700">{category}</p>
                   <p className="mt-1 text-xs text-slate-500">現在地から検索する</p>
@@ -394,14 +407,14 @@ export default function Home() {
         </section>
       </section>
 
-      <nav className="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white/95 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur">
+      <nav className="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white/95 shadow-[0_-12px_35px_rgba(15,23,42,0.10)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-around gap-2 px-2 py-2 sm:gap-4 sm:px-4">
           {nearbyCategories.map((category) => (
             <button
               key={category}
               type="button"
               onClick={() => openNearbySearch(category)}
-              className="flex flex-1 flex-col items-center rounded-2xl bg-slate-100 px-2 py-3 text-xs font-black text-slate-700 shadow-sm transition hover:bg-emerald-100 hover:text-emerald-800 sm:px-3 sm:py-3 sm:text-sm"
+              className="flex flex-1 flex-col items-center rounded-2xl bg-slate-100 px-2 py-3 text-xs font-black text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-emerald-100 hover:text-emerald-800 sm:px-3 sm:py-3 sm:text-sm"
             >
               <span className="text-base">{category === "レストラン" ? "🍽️" : category === "コンビニ" ? "🏪" : "☕"}</span>
               <span>{category}</span>
