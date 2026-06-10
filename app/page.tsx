@@ -30,7 +30,6 @@ const schedule: TravelDay[] = [
         kind: "✈ フライト",
         location: "NRT",
         memo: "18:40 [JP] NRT → 23:59 [CT] DFW",
-        url: "https://www.skyscanner.jp/transport/flights/dfw/bos/260626/260627/config/10968-2606260705--32385-0-10081-2606261157%7C10081-2606271840--32385-0-10968-2606272157?adultsv2=3&cabinclass=economy&childrenv2=&ref=home&rtn=1&",
       },
       {
         time: "24:00 [CT]",
@@ -79,7 +78,6 @@ const schedule: TravelDay[] = [
         kind: "✈ フライト",
         location: "DFW → BOS",
         memo: "07:05 [CT] DFW → 11:57 [ET] BOS",
-        url: "https://www.skyscanner.jp/transport/flights/dfw/bos/260626/260627/config/10968-2606260705--32385-0-10081-2606261157%7C10081-2606271840--32385-0-10968-2606272157?adultsv2=3&cabinclass=economy&childrenv2=&ref=home&rtn=1&",
       },
       {
         time: "12:00 [ET]",
@@ -131,7 +129,6 @@ const schedule: TravelDay[] = [
         kind: "✈ フライト",
         location: "BOS → DFW",
         memo: "18:40 [ET] BOS → 21:57 [CT] DFW",
-        url: "https://www.skyscanner.jp/transport/flights/dfw/bos/260626/260627/config/10968-2606260705--32385-0-10081-2606261157%7C10081-2606271840--32385-0-10968-2606272157?adultsv2=3&cabinclass=economy&childrenv2=&ref=home&rtn=1&",
       },
       {
         time: "24:00 [CT]",
@@ -186,7 +183,6 @@ const schedule: TravelDay[] = [
         kind: "✈ フライト",
         location: "IAH → HND",
         memo: "20:12 [CT] IAH → 7/1 04:45 [JP] HND",
-        url: "https://jp.trip.com/online/orderdetail/index?orderid=1385432769124440&from=email&template=TRIP_BOOKING_CONFIRMED&locale=ja-JP&channel=email&subChannel=TRIP_BOOKING_CONFIRMED&oid=1385432769124440&orderId=1385432769124440&redirectFromOnline=1&accesstoken=",
       },
     ],
   },
@@ -224,7 +220,6 @@ const getActionLabel = (item: ScheduleItem, type: "url" | "map") => {
 
   const text = `${item.title} ${item.kind ?? ""}`.toLowerCase();
 
-  if (/フライト|飛行機/.test(text)) return "航空券を見る";
   if (/試合|vs/.test(text)) return "マッチ情報";
 
   return "詳細を見る";
@@ -402,6 +397,7 @@ export default function Home() {
                             const isOpen = Boolean(openItems[key]);
                             const isMatchItem = /試合|vs/.test(`${item.title} ${item.kind ?? ""}`.toLowerCase());
                             const isFlightItem = /フライト|飛行機/.test(`${item.title} ${item.kind ?? ""}`.toLowerCase());
+                            const shouldShowUrlButton = Boolean(item.url) && !isFlightItem;
                             const flightRoute = isFlightItem ? getFlightRoute(item) : null;
 
                             return (
@@ -453,7 +449,7 @@ export default function Home() {
                                       <p className="leading-6">{item.memo}</p>
                                     ) : null}
                                     <div className="mt-3 flex flex-wrap gap-2">
-                                      {item.url && (
+                                      {shouldShowUrlButton && (
                                         <a
                                           href={item.url}
                                           target="_blank"
