@@ -11,6 +11,12 @@ type ScheduleItem = {
   memo?: string;
   url?: string;
   mapUrl?: string;
+  options?: Array<{
+    label?: string;
+    url?: string;
+    mapUrl?: string;
+    buttonLabel?: string;
+  }>;
 };
 
 type TravelDay = {
@@ -29,14 +35,13 @@ const schedule: TravelDay[] = [
         title: "フライト",
         kind: "✈ フライト",
         location: "NRT",
-        memo: "18:40 [JP] NRT → 23:59 [CT] DFW",
+        memo: "18:40 [JP] NRT発 → 23:59 [CT] DFW着",
       },
       {
-        time: "24:00 [CT]",
+        time: "時間未定",
         title: "ホテル",
         kind: "🏨 ホテル",
         location: "場所未定",
-        memo: "翌朝の移動に備えて休息をとります。",
       },
     ],
   },
@@ -45,10 +50,9 @@ const schedule: TravelDay[] = [
     label: "観戦Day1 ★",
     items: [
       {
-        time: "〜18:00 [CT]",
+        time: "〜18:00",
         title: "自由時間",
         kind: "🕒 自由時間",
-        memo: "観光や食事、準備をゆったりと。",
       },
       {
         time: "18:00 [CT]",
@@ -60,11 +64,10 @@ const schedule: TravelDay[] = [
         mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6",
       },
       {
-        time: "ホテル",
+        time: "時間未定",
         title: "ホテル",
         kind: "🏨 ホテル",
         location: "場所未定",
-        memo: "試合後の休息を確保します。",
       },
     ],
   },
@@ -73,22 +76,21 @@ const schedule: TravelDay[] = [
     label: "観戦Day2 ★",
     items: [
       {
-        time: "06:00 [CT]",
+        time: "6:00 [CT]",
         title: "フライト",
         kind: "✈ フライト",
         location: "DFW → BOS",
-        memo: "07:05 [CT] DFW → 11:57 [ET] BOS",
+        memo: "07:05 [CT] DFW発 → 11:57 [ET] BOS着",
       },
       {
         time: "12:00 [ET]",
         title: "ランチ",
-        kind: "🍔 ランチ",
+        kind: "🍖 ランチ",
       },
       {
-        time: "13:00〜14:00 [ET]",
+        time: "13:00 [ET]〜14:00 [ET]",
         title: "移動",
         kind: "🚗 移動",
-        memo: "会場周辺へ移動します。",
       },
       {
         time: "15:00 [ET]",
@@ -100,13 +102,7 @@ const schedule: TravelDay[] = [
         mapUrl: "https://maps.app.goo.gl/CMtnP3nN18XTN1tm8",
       },
       {
-        time: "18:00 [ET]",
-        title: "自由時間",
-        kind: "🕒 自由時間",
-        memo: "ホテルは未定のため、現地での移動は柔軟に。",
-      },
-      {
-        time: "ホテル",
+        time: "時間未定",
         title: "ホテル",
         kind: "🏨 ホテル",
         location: "場所未定",
@@ -121,21 +117,19 @@ const schedule: TravelDay[] = [
         time: "〜17:00 [ET]",
         title: "自由時間",
         kind: "🕒 自由時間",
-        memo: "街歩きや休憩を楽しみます。",
       },
       {
         time: "17:00 [ET]",
         title: "フライト",
         kind: "✈ フライト",
         location: "BOS → DFW",
-        memo: "18:40 [ET] BOS → 21:57 [CT] DFW",
+        memo: "18:40 [ET] BOS発 → 21:57 [CT] DFW着",
       },
       {
-        time: "24:00 [CT]",
+        time: "時間未定",
         title: "ホテル",
         kind: "🏨 ホテル",
         location: "場所未定",
-        memo: "翌日以降の移動準備をします。",
       },
     ],
   },
@@ -144,11 +138,42 @@ const schedule: TravelDay[] = [
     label: "GOLF Day",
     items: [
       {
-        time: "終日",
+        time: "9:00 [CT]",
+        title: "Fort Worth Stockyards",
+        kind: "📍 観光",
+        mapUrl: "https://share.google/EqhKercWdOUAytMy1",
+      },
+      {
+        time: "11:30 [CT]",
+        title: "テキサスBBQランチ",
+        kind: "🍖 食事",
+        memo: "候補1：Cooper's Old Time Pit Bar-B-Que / 候補2：Riscky's BBQ",
+        options: [
+          { label: "候補1: Cooper's Old Time Pit Bar-B-Que", mapUrl: "https://maps.app.goo.gl/4KNGY568cF7hUXkP6", buttonLabel: "Google Maps" },
+          { label: "候補2: Riscky's BBQ", mapUrl: "https://share.google/I6RJ64x90zuvPkO4O", buttonLabel: "Google Maps" },
+        ],
+      },
+      {
+        time: "13:30 [CT]",
+        title: "ゴルフ",
+        kind: "⛳ ゴルフ",
+        options: [
+          { label: "Texas Star Golf Course", url: "https://texasstar.cps.golf/onlineresweb/search-teetime?TeeOffTimeMin=0&TeeOffTimeMax=23.999722222222225", buttonLabel: "予約ページ" },
+          { label: "Bear Creek Golf Club", url: "https://arcisgolf.com/clubs/bear_creek_golf_club/home?utm_source=chatgpt.com", buttonLabel: "予約ページ" },
+        ],
+      },
+      {
+        time: "20:00 [CT]",
+        title: "カジノ",
+        kind: "🎰 カジノ",
+        location: "Choctaw Casino & Resort",
+        mapUrl: "https://maps.app.goo.gl/yvPExBzpzikLH3Hy6",
+      },
+      {
+        time: "時間未定",
         title: "ホテル",
         kind: "🏨 ホテル",
         location: "未定",
-        memo: "移動先を柔軟に調整しながら過ごします。",
       },
     ],
   },
@@ -156,6 +181,11 @@ const schedule: TravelDay[] = [
     date: "6/29",
     label: "観戦Day3 ★",
     items: [
+      {
+        time: "7:00 [CT]",
+        title: "移動",
+        kind: "🚗 移動",
+      },
       {
         time: "12:00 [CT]",
         title: "F2位 vs C1位",
@@ -172,17 +202,17 @@ const schedule: TravelDay[] = [
     label: "帰国Day",
     items: [
       {
-        time: "〜19:00 [CT]",
-        title: "自由時間",
-        kind: "🕒 自由時間",
-        memo: "荷物整理や最後の買い物をします。",
+        time: "13:00 [CT]",
+        title: "Space Center Houston",
+        kind: "📍 観光",
+        mapUrl: "https://share.google/VNv9d4qSaUtCd9oOs",
       },
       {
         time: "19:00 [CT]",
         title: "フライト",
         kind: "✈ フライト",
         location: "IAH → HND",
-        memo: "20:12 [CT] IAH → 7/1 04:45 [JP] HND",
+        memo: "20:12 [CT] IAH発 → 7/1（水）04:45 [JP] HND着",
       },
     ],
   },
@@ -193,8 +223,7 @@ const schedule: TravelDay[] = [
       {
         time: "終日",
         title: "予備日",
-        kind: "🗓️ 予備日",
-        memo: "予定の調整や休息に使います。",
+        kind: "📝 予備日",
       },
     ],
   },
@@ -219,11 +248,15 @@ const getItemIcon = (item: ScheduleItem) => {
   if (/フライト|飛行機/.test(text)) return "✈";
   if (/試合|vs/.test(text)) return "⚽";
   if (/ホテル/.test(text)) return "🏨";
-  if (/ランチ/.test(text)) return "🍔";
+  if (/ランチ|食事|bbq/.test(text)) return "🍖";
   if (/移動/.test(text)) return "🚗";
   if (/自由時間/.test(text)) return "🕒";
+  if (/観光|stockyards|space center/.test(text)) return "📍";
+  if (/ゴルフ/.test(text)) return "⛳";
+  if (/カジノ/.test(text)) return "🎰";
+  if (/予備日/.test(text)) return "📝";
 
-  return "🗺️";
+  return "📅";
 };
 
 const getActionLabel = (item: ScheduleItem, type: "url" | "map") => {
@@ -232,6 +265,7 @@ const getActionLabel = (item: ScheduleItem, type: "url" | "map") => {
   const text = `${item.title} ${item.kind ?? ""}`.toLowerCase();
 
   if (/試合|vs/.test(text)) return "マッチ情報";
+  if (/ゴルフ|予約/.test(text)) return "予約ページ";
 
   return "詳細を見る";
 };
@@ -278,6 +312,13 @@ export default function Home() {
     ? schedule.find((day) => day.date === selectedDate) ?? null
     : null;
 
+  const getWeekdayLabel = (dateText: string) => {
+    const [month, day] = dateText.split("/").map(Number);
+    const weekday = new Date(2026, month - 1, day).getDay();
+
+    return ["日", "月", "火", "水", "木", "金", "土"][weekday];
+  };
+
   const toggleItem = (key: string) => {
     setOpenItems((prev) => ({
       ...prev,
@@ -317,7 +358,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top,_#ffffff_0%,_#f8fbff_38%,_#eef4ff_100%)] text-slate-900">
+    <main className="min-h-screen bg-[linear-gradient(160deg,#ffffff_0%,#f7fbff_35%,#edf4ff_100%)] text-slate-900">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col pb-28">
         <section className="px-4 pt-4 sm:px-6 sm:pt-5">
           <div className="grid gap-3 md:grid-cols-[1.2fr_0.8fr]">
@@ -360,7 +401,7 @@ export default function Home() {
         </section>
 
         <section className="px-4 sm:px-6">
-          <div className="rounded-[30px] border border-white/80 bg-white/90 p-4 shadow-[0_24px_50px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-5">
+          <div className="rounded-[30px] border border-slate-200/90 bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-5">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-sky-700">Schedule</p>
@@ -381,8 +422,8 @@ export default function Home() {
                       onClick={() => handleDateSelect(day.date)}
                       className={`w-full rounded-[24px] border p-3 text-left transition duration-200 sm:p-4 ${
                         selected
-                          ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
-                          : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
+                          ? "border-sky-400 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#f0fdf4_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
+                          : "border-slate-200/90 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_50%,#f0fdfa_100%)] hover:shadow-[0_16px_28px_rgba(15,23,42,0.08)]"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
@@ -391,16 +432,16 @@ export default function Home() {
                             <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">DATE</p>
                             <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">{day.date}</span>
                           </div>
-                          <p className="mt-2 text-2xl font-black tracking-[0.03em] text-slate-900 sm:text-[28px]">{day.date}（{["月", "火", "水", "木", "金", "土", "日"][new Date(`2026/${day.date.replace('/', '/')}`).getDay()] ?? ""}）</p>
+                          <p className="mt-2 text-2xl font-black tracking-[0.03em] text-slate-900 sm:text-[28px]">{day.date}（{getWeekdayLabel(day.date)}）</p>
                           <p className="mt-1 text-base font-semibold text-slate-800">{getDayThemeIcon(day.label)} {day.label}</p>
                         </div>
-                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">🗓 {day.items.length}件</span>
+                        <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm">🗓 {day.items.length}件</span>
                       </div>
                     </button>
 
                     {selected && (
                       <article className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
-                        <div className="mb-3 flex items-center justify-between gap-2 rounded-[20px] border border-sky-100 bg-sky-50/80 px-3 py-2 text-xs font-semibold text-sky-800 sm:px-4">
+                        <div className="mb-3 flex items-center justify-between gap-2 rounded-[20px] border border-sky-100 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_70%,#ecfeff_100%)] px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm sm:px-4">
                           <span>旅程カード</span>
                           <span>{day.items.length} 件</span>
                         </div>
@@ -417,10 +458,10 @@ export default function Home() {
                             return (
                               <article
                                 key={key}
-                                className={`rounded-[24px] border p-4 shadow-sm ring-1 transition hover:border-sky-200 hover:shadow-md ${
+                                className={`rounded-[24px] border p-4 shadow-[0_12px_24px_rgba(15,23,42,0.06)] ring-1 transition hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_18px_30px_rgba(15,23,42,0.10)] ${
                                   isMatchItem
-                                    ? "border-amber-200 bg-[linear-gradient(135deg,#fffaf0_0%,#ffffff_60%,#fff7ed_100%)] ring-amber-100"
-                                    : "border-slate-200 bg-white ring-slate-100"
+                                    ? "border-amber-200 bg-[linear-gradient(135deg,#fffaf0_0%,#ffffff_55%,#fff7ed_100%)] ring-amber-100"
+                                    : "border-slate-200/90 bg-white ring-slate-100"
                                 }`}
                               >
                                 <button
@@ -481,6 +522,38 @@ export default function Home() {
                                         </a>
                                       )}
                                     </div>
+
+                                    {item.options && item.options.length > 0 && (
+                                      <div className="mt-3 space-y-2">
+                                        {item.options.map((option, optionIndex) => (
+                                          <div key={`${key}-option-${optionIndex}`} className="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                                            {option.label ? <p className="text-sm font-semibold text-slate-800">{option.label}</p> : null}
+                                            <div className="mt-2 flex flex-wrap gap-2">
+                                              {option.url ? (
+                                                <a
+                                                  href={option.url}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
+                                                >
+                                                  {option.buttonLabel ?? getActionLabel(item, "url")}
+                                                </a>
+                                              ) : null}
+                                              {option.mapUrl ? (
+                                                <a
+                                                  href={option.mapUrl}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
+                                                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+                                                >
+                                                  {option.buttonLabel ?? getActionLabel(item, "map")}
+                                                </a>
+                                              ) : null}
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
                                   </div>
                                 )}
                               </article>
