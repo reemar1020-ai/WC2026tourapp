@@ -324,18 +324,18 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:gap-3 sm:overflow-visible">
                 {timeZones.map((item) => (
                   <article
                     key={item.label}
-                    className="rounded-[22px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-3 shadow-sm"
+                    className="min-w-[96px] flex-1 rounded-[18px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-2.5 shadow-sm sm:min-w-0"
                   >
-                    <p className="text-[11px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
-                    <div className="mt-2 flex items-end gap-2">
-                      <span className="text-xl font-black text-slate-900">{item.flag}</span>
-                      <span className="text-xl font-black text-slate-900">{formatTime(item.timeZone)}</span>
+                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
+                    <div className="mt-1 flex items-end gap-1.5">
+                      <span className="text-base font-black text-slate-900">{item.flag}</span>
+                      <span className="text-base font-black text-slate-900">{formatTime(item.timeZone)}</span>
                     </div>
-                    <p className="mt-1 text-xs text-slate-500">{item.label === "JP" ? "日本時間" : item.label === "CT" ? "ダラス / ヒューストン" : "ボストン時間"}</p>
+                    <p className="mt-1 text-[10px] leading-4 text-slate-500">{item.label === "JP" ? "日本" : item.label === "CT" ? "ダラス" : "ボストン"}</p>
                   </article>
                 ))}
               </div>
@@ -427,9 +427,8 @@ export default function Home() {
                                     <div className="flex-1">
                                       <div className="flex items-center gap-2">
                                         <p className="text-base font-black text-slate-900">{item.title}</p>
-                                        {item.kind && <span className="rounded-full bg-sky-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-sky-700">{item.kind}</span>}
                                       </div>
-                                      <p className="mt-2 text-base font-black tracking-[0.02em] text-slate-900">{item.time}</p>
+                                      <p className="mt-2 text-lg font-black tracking-[0.04em] text-slate-900">{item.time}</p>
                                       {item.venue ? (
                                         <p className="mt-1 text-sm text-slate-600">{item.venue}</p>
                                       ) : item.location ? (
