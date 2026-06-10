@@ -194,7 +194,6 @@ const nearbyCategories = ["レストラン", "コンビニ", "カフェ"] as con
 export default function Home() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [openItems, setOpenItems] = useState<Record<string, boolean>>({});
-  const [locationStatus, setLocationStatus] = useState("現在地を取得すると、近くの施設をGoogle Mapsで検索できます。" );
 
   const selectedDay = selectedDate
     ? schedule.find((day) => day.date === selectedDate) ?? null
@@ -214,11 +213,9 @@ export default function Home() {
 
   const openNearbySearch = (category: string) => {
     if (!navigator.geolocation) {
-      setLocationStatus("この端末では位置情報が使えないため、現在地検索はできません。別の端末でお試しください。");
+      window.alert("この端末では位置情報が使えないため、Google Maps検索を開始できません。別の端末やブラウザでお試しください。");
       return;
     }
-
-    setLocationStatus("現在地を取得しています…少しお待ちください。");
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -226,16 +223,15 @@ export default function Home() {
         const lng = position.coords.longitude.toFixed(6);
         const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(category)}/@${lat},${lng},15z`;
 
-        window.open(mapsUrl, "_blank", "noopener,noreferrer");
-        setLocationStatus(`${category}の検索をGoogle Mapsで開きました。現在地から周辺を確認できます。`);
+        window.location.href = mapsUrl;
       },
       (error) => {
         const message =
           error.code === 1
-            ? "位置情報の許可がオフのため、現在地検索できませんでした。ブラウザの位置情報設定をオンにしてください。"
-            : "現在地を取得できませんでした。通信環境や端末設定を確認してください。";
+            ? "位置情報の許可がオフです。Safariやブラウザ設定で位置情報を許可してから再度お試しください。"
+            : "現在地の取得に失敗しました。通信環境や端末設定を確認してから再度お試しください。";
 
-        setLocationStatus(message);
+        window.alert(message);
       },
       { enableHighAccuracy: true, timeout: 10000 },
     );
@@ -354,36 +350,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="px-4 pt-4 sm:px-6">
-          <div className="rounded-[28px] border border-white/70 bg-white/90 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-emerald-700">Nearby</p>
-                <h2 className="text-lg font-bold text-slate-900">近隣施設検索</h2>
-                <p className="mt-1 text-sm text-slate-600">現在地から近くの施設をGoogle Mapsで探せます。</p>
-              </div>
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-800">半径約3km</span>
-            </div>
-
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              {nearbyCategories.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => openNearbySearch(category)}
-                  className="rounded-[24px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] px-4 py-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50 hover:shadow-md"
-                >
-                  <p className="text-sm font-semibold text-slate-700">{category}</p>
-                  <p className="mt-1 text-xs text-slate-500">現在地から検索する</p>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-4 rounded-[22px] border border-emerald-100 bg-emerald-50 p-3 text-sm text-emerald-900 shadow-sm">
-              {locationStatus}
-            </div>
-          </div>
-        </section>
       </section>
 
       <nav className="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white/95 shadow-[0_-12px_35px_rgba(15,23,42,0.10)] backdrop-blur-xl">
