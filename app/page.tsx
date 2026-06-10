@@ -281,14 +281,7 @@ export default function Home() {
 
                     {selected && (
                       <article className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
-                        <div className="flex items-start justify-between gap-3 rounded-[24px] border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
-                          <div>
-                            <p className="mt-1 text-sm text-slate-600">{day.summary}</p>
-                          </div>
-                          <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white shadow-sm">{day.items.length} 件</span>
-                        </div>
-
-                        <div className="mt-4 space-y-3">
+                        <div className="space-y-3">
                           {day.items.map((item, index) => {
                             const key = `${day.date}-${index}`;
                             const isOpen = Boolean(openItems[key]);
