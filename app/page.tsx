@@ -202,6 +202,17 @@ const schedule: TravelDay[] = [
 
 const nearbyCategories = ["レストラン", "コンビニ", "カフェ"] as const;
 
+const getDayThemeIcon = (label: string) => {
+  if (/移動/.test(label)) return "✈";
+  if (/観戦Day1|観戦Day2|観戦Day3/.test(label)) return "⚽";
+  if (/ボストン観光/.test(label)) return "🏙️";
+  if (/GOLF/.test(label)) return "⛳";
+  if (/帰国/.test(label)) return "🛫";
+  if (/予備/.test(label)) return "📝";
+
+  return "📅";
+};
+
 const getItemIcon = (item: ScheduleItem) => {
   const text = `${item.title} ${item.kind ?? ""} ${item.venue ?? ""}`.toLowerCase();
 
@@ -368,19 +379,22 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() => handleDateSelect(day.date)}
-                      className={`w-full rounded-[24px] border p-4 text-left transition duration-200 ${
+                      className={`w-full rounded-[24px] border p-3 text-left transition duration-200 sm:p-4 ${
                         selected
                           ? "border-sky-500 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_45%,#ecfeff_100%)] shadow-[0_18px_30px_rgba(56,189,248,0.18)]"
                           : "border-slate-200 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-sky-50/70 hover:shadow-md"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-3">
-                        <div>
-                          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">DATE</p>
-                          <p className="mt-1 text-xl font-black tracking-[0.02em] text-slate-900">{day.date}</p>
-                          <p className="mt-1 text-base font-semibold text-slate-700">{day.label}</p>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2">
+                            <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">DATE</p>
+                            <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">{day.date}</span>
+                          </div>
+                          <p className="mt-2 text-2xl font-black tracking-[0.03em] text-slate-900 sm:text-[28px]">{day.date}（{["月", "火", "水", "木", "金", "土", "日"][new Date(`2026/${day.date.replace('/', '/')}`).getDay()] ?? ""}）</p>
+                          <p className="mt-1 text-base font-semibold text-slate-800">{getDayThemeIcon(day.label)} {day.label}</p>
                         </div>
-                        <span className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">{day.items.length} 件</span>
+                        <span className="inline-flex items-center gap-1 rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold text-white shadow-sm">🗓 {day.items.length}件</span>
                       </div>
                     </button>
 
@@ -416,15 +430,12 @@ export default function Home() {
                                   aria-expanded={isOpen}
                                 >
                                   <div className="flex items-start gap-3">
-                                    <div className="flex min-w-[72px] flex-col items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#fef3c7_0%,#fde68a_100%)] px-3 py-3 text-center text-sm font-black text-amber-900 shadow-sm">
-                                      <span className="text-base">{getItemIcon(item)}</span>
-                                      <span className="mt-1 text-[10px] uppercase tracking-[0.2em] text-amber-800">{item.kind ? item.kind.replace(/^[^\p{L}]+/u, "") : "PLAN"}</span>
+                                    <div className="flex min-w-[72px] flex-col items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#fef3c7_0%,#fde68a_100%)] px-3 py-3 text-center text-amber-900 shadow-sm">
+                                      <span className="text-xl leading-none">{getItemIcon(item)}</span>
                                     </div>
                                     <div className="flex-1">
-                                      <div className="flex items-center gap-2">
-                                        <p className="text-base font-black text-slate-900">{item.title}</p>
-                                      </div>
-                                      <p className="mt-2 text-lg font-black tracking-[0.04em] text-slate-900">{item.time}</p>
+                                      <p className="text-xl font-black tracking-[0.08em] text-slate-900 sm:text-2xl">{item.time}</p>
+                                      <p className="mt-1 text-base font-semibold text-slate-800">{item.title}</p>
                                       {item.venue ? (
                                         <p className="mt-1 text-sm text-slate-600">{item.venue}</p>
                                       ) : item.location ? (
