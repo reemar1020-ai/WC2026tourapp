@@ -197,12 +197,6 @@ export default function Home() {
   const [now, setNow] = useState<Date>(new Date());
   const usdJpyRate = 157.2;
 
-  const travelSummary = [
-    { label: "日数", value: "7日間" },
-    { label: "主な移動", value: "NRT / LAX / DFW / BOS" },
-    { label: "観戦", value: "3試合" },
-  ];
-
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60_000);
 
@@ -280,8 +274,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[linear-gradient(160deg,#ffffff_0%,#f7fbff_35%,#edf4ff_100%)] text-slate-900">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col pb-28">
-        <section className="px-4 pt-4 sm:px-6 sm:pt-5">
-          <div className="grid gap-3 md:grid-cols-[1.15fr_0.95fr_0.9fr]">
+        <section className="px-4 pt-3 sm:px-6 sm:pt-4">
+          <div className="grid gap-3 md:grid-cols-[1.1fr_0.9fr] md:gap-4">
             <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -304,20 +298,6 @@ export default function Home() {
                     </div>
                     <p className="mt-1 text-[10px] leading-4 text-slate-500">{item.name}</p>
                   </article>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
-              <p className="text-[11px] uppercase tracking-[0.25em] text-amber-700">Itinerary</p>
-              <h2 className="text-lg font-bold text-slate-900">旅行しおり</h2>
-              <p className="mt-2 text-sm text-slate-600">出発〜帰国までの主要な流れをひと目で確認できます。</p>
-              <div className="mt-4 space-y-3">
-                {travelSummary.map((item) => (
-                  <div key={item.label} className="rounded-[20px] border border-slate-200 bg-[linear-gradient(135deg,#fffef7_0%,#ffffff_100%)] p-3 shadow-sm">
-                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
-                    <p className="mt-1 text-sm font-semibold text-slate-800">{item.value}</p>
-                  </div>
                 ))}
               </div>
             </article>
