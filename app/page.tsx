@@ -218,10 +218,6 @@ export default function Home() {
       hour12: false,
     }).format(now);
 
-  const selectedDay = selectedDate
-    ? schedule.find((day) => day.date === selectedDate) ?? null
-    : null;
-
   const getWeekdayLabel = (dateText: string) => {
     const [month, day] = dateText.split("/").map(Number);
     const weekday = new Date(2026, month - 1, day).getDay();
@@ -253,7 +249,7 @@ export default function Home() {
         const lng = position.coords.longitude.toFixed(6);
         const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(category)}/@${lat},${lng},15z`;
 
-        window.location.href = mapsUrl;
+        globalThis.location.assign(mapsUrl);
       },
       (error) => {
         const message =
@@ -268,7 +264,7 @@ export default function Home() {
   };
 
   const openWorldCupResults = () => {
-    window.location.href = "https://www.google.com/search?q=%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%AB%E3%83%83%E3%83%97+2026";
+    globalThis.location.assign("https://www.google.com/search?q=%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%AB%E3%83%83%E3%83%97+2026");
   };
 
   return (
@@ -281,7 +277,6 @@ export default function Home() {
                 <div>
                   <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">World Clock</p>
                   <h2 className="text-lg font-bold text-slate-900">現在時刻</h2>
-                  <p className="mt-1 text-sm text-slate-600">旅行中の各地域時間をすぐ確認できます。</p>
                 </div>
               </div>
 
@@ -305,8 +300,7 @@ export default function Home() {
             <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
               <p className="text-[11px] uppercase tracking-[0.25em] text-emerald-700">Exchange</p>
               <h2 className="text-lg font-bold text-slate-900">ドル円レート</h2>
-              <p className="mt-2 text-sm text-slate-600">現在の目安レートです。</p>
-              <div className="mt-4 rounded-[24px] border border-emerald-100 bg-emerald-50 p-4 shadow-sm">
+              <div className="mt-3 rounded-[24px] border border-emerald-100 bg-emerald-50 p-4 shadow-sm">
                 <p className="text-xs uppercase tracking-[0.25em] text-emerald-800">USD / JPY</p>
                 <p className="mt-2 text-3xl font-black text-emerald-900">1ドル = {usdJpyRate.toFixed(2)}円</p>
               </div>
@@ -320,14 +314,12 @@ export default function Home() {
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-sky-700">Schedule</p>
                 <h2 className="text-lg font-bold text-slate-900">旅行しおり</h2>
-                <p className="mt-1 text-sm text-slate-600">日ごとの移動・観戦・宿泊がひと目で確認できる旅程表です。</p>
               </div>
             </div>
 
             <div className="mt-4 flex flex-col gap-3">
               {schedule.map((day) => {
                 const selected = day.date === selectedDate;
-                const isMatchDay = ["6/25", "6/26", "6/29"].includes(day.date);
 
                 return (
                   <div key={day.date} className="flex flex-col gap-3">
