@@ -30,206 +30,111 @@ const schedule: TravelDay[] = [
     date: "6/24",
     label: "移動Day",
     items: [
-      {
-        time: "17:00 [JP]",
-        title: "フライト",
-        kind: "✈ フライト",
-        location: "NRT",
-        memo: "18:40 [JP] NRT発 → 23:59 [CT] DFW着",
-      },
-      {
-        time: "時間未定",
-        title: "ホテル",
-        kind: "🏨 ホテル",
-        location: "場所未定",
-      },
+      { time: "15:40 [JP]", title: "NRT 第1ターミナル集合", kind: "集合", mapUrl: "https://maps.app.goo.gl/kYstFtFUcgC7KocZA" },
+      { time: "16:00 [JP]", title: "肉料理やきすきやんま", kind: "食事", mapUrl: "https://maps.app.goo.gl/P95nLJRHeAAJnLdM7" },
+      { time: "16:40 [JP]", title: "空港チェックイン 第1ターミナル", kind: "チェックイン" },
+      { time: "17:00〜18:00 [JP]", title: "ラウンジ", kind: "ラウンジ", memo: "軽食あり", url: "https://www.saisoncard.co.jp/creditcard/benefits-service/lounge/" },
+      { time: "18:10 [JP]", title: "搭乗準備", kind: "搭乗" },
+      { time: "18:40 [JP]", title: "フライト NRT → LAX", kind: "フライト", memo: "18:40 [JP] NRT発\n↓\n12:50 [PST] LAX着" },
+      { time: "12:50〜14:00 [PST]", title: "USA入国審査", kind: "入国審査" },
+      { time: "14:00〜16:00 [PST]", title: "LAX ターミナルB ラウンジ", kind: "ラウンジ", memo: "軽食あり" },
+      { time: "16:00〜17:00 [PST]", title: "国内線乗り換え移動", kind: "移動", memo: "LAX ターミナルB → ターミナル3" },
+      { time: "17:00 [PST]", title: "空港チェックイン", kind: "チェックイン", memo: "LAX ターミナル3" },
+      { time: "17:00〜18:15 [PST]", title: "ラウンジ", kind: "ラウンジ", memo: "軽食あり" },
+      { time: "18:30 [PST]", title: "搭乗ゲート", kind: "搭乗" },
+      { time: "18:53 [PST]", title: "フライト LAX → DFW", kind: "フライト", memo: "18:53 [PST] LAX発\n↓\n23:59 [CT] DFW着" },
+      { time: "25:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Super 8 by Wyndham Irving/DFW Apt/North", mapUrl: "https://maps.app.goo.gl/suYUgd7VPLuMp2Qy9" },
     ],
   },
   {
     date: "6/25",
     label: "観戦Day1 ★",
     items: [
-      {
-        time: "〜18:00",
-        title: "自由時間",
-        kind: "🕒 自由時間",
-      },
-      {
-        time: "18:00 [CT]",
-        title: "JPN vs SWE",
-        kind: "⚽ 試合",
-        location: "AT&Tスタジアム",
-        venue: "会場: AT&Tスタジアム",
-        url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021471",
-        mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6",
-      },
-      {
-        time: "時間未定",
-        title: "ホテル",
-        kind: "🏨 ホテル",
-        location: "場所未定",
-      },
+      { time: "8:00 [CT]", title: "朝食", kind: "食事" },
+      { time: "9:00〜13:00 [CT]", title: "Texas Card House", kind: "自由時間", mapUrl: "https://maps.app.goo.gl/5VP6x6zZBeonB2LcA" },
+      { time: "13:00 [CT]", title: "友達ピックアップ", kind: "移動" },
+      { time: "13:00 [CT]", title: "ランチ Texas Roadhouse", kind: "食事", mapUrl: "https://maps.app.goo.gl/39fidkkuZXzis9Fr5" },
+      { time: "16:00 [CT]", title: "入場", kind: "観光", venue: "AT&Tスタジアム", mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6" },
+      { time: "18:00 [CT]", title: "キックオフ JPN vs SWE", kind: "試合", venue: "AT&Tスタジアム", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021471", mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6" },
+      { time: "21:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Super 8 by Wyndham Irving/DFW Apt/North", mapUrl: "https://maps.app.goo.gl/suYUgd7VPLuMp2Qy9" },
     ],
   },
   {
     date: "6/26",
     label: "観戦Day2 ★",
     items: [
-      {
-        time: "6:00 [CT]",
-        title: "フライト",
-        kind: "✈ フライト",
-        location: "DFW → BOS",
-        memo: "07:05 [CT] DFW発 → 11:57 [ET] BOS着",
-      },
-      {
-        time: "12:00 [ET]",
-        title: "ランチ",
-        kind: "🍖 ランチ",
-      },
-      {
-        time: "13:00 [ET]〜14:00 [ET]",
-        title: "移動",
-        kind: "🚗 移動",
-      },
-      {
-        time: "15:00 [ET]",
-        title: "NOR vs FRA",
-        kind: "⚽ 試合",
-        location: "ジレットスタジアム",
-        venue: "会場: ジレットスタジアム",
-        url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021489",
-        mapUrl: "https://maps.app.goo.gl/CMtnP3nN18XTN1tm8",
-      },
-      {
-        time: "時間未定",
-        title: "ホテル",
-        kind: "🏨 ホテル",
-        location: "場所未定",
-      },
+      { time: "4:30 [CT]", title: "ホテルチェックアウト", kind: "ホテル" },
+      { time: "5:30 [CT]", title: "空港チェックイン", kind: "チェックイン", memo: "DFW ターミナルE", mapUrl: "https://maps.app.goo.gl/gKDHQDLEsCXWkV2V7" },
+      { time: "6:00 [CT]", title: "朝食 Drew Pearson's Sport 88", kind: "食事", mapUrl: "https://maps.app.goo.gl/oa4P6CnBCHLjGQRe8" },
+      { time: "6:45 [CT]", title: "搭乗ゲート", kind: "搭乗" },
+      { time: "07:05 [CT]", title: "フライト DFW → BOS", kind: "フライト", memo: "07:05 [CT] DFW発\n↓\n11:57 [ET] BOS着" },
+      { time: "12:30 [ET]", title: "移動", kind: "移動", memo: "Uber利用予定\n電車：要確認", options: [{ label: "シャトルバス検索", url: "https://www.google.com/search?q=BOS%E7%A9%BA%E6%B8%AF%E2%86%92Hampton+Inn+Boston+Logan+Airport+%E3%82%B7%E3%83%A3%E3%83%88%E3%83%AB%E3%83%90%E3%82%B9", buttonLabel: "シャトルバス検索" }] },
+      { time: "13:00 [ET]", title: "ホテルチェックイン", kind: "ホテル", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
+      { time: "13:00 [ET]", title: "移動", kind: "移動", memo: "Uber利用予定\n電車：要確認" },
+      { time: "14:00 [ET]", title: "入場", kind: "観光", venue: "ジレット・スタジアム", mapUrl: "https://maps.app.goo.gl/vM1JASkx3EV6YEDm8" },
+      { time: "15:00 [ET]", title: "キックオフ NOR vs FRA", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021489" },
+      { time: "19:00 [ET]", title: "夕食", kind: "食事" },
+      { time: "20:00 [ET]", title: "ホテル帰還", kind: "ホテル", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
     ],
   },
   {
     date: "6/27",
     label: "ボストン観光Day",
     items: [
-      {
-        time: "〜17:00 [ET]",
-        title: "自由時間",
-        kind: "🕒 自由時間",
-      },
-      {
-        time: "17:00 [ET]",
-        title: "フライト",
-        kind: "✈ フライト",
-        location: "BOS → DFW",
-        memo: "18:40 [ET] BOS発 → 21:57 [CT] DFW着",
-      },
-      {
-        time: "時間未定",
-        title: "ホテル",
-        kind: "🏨 ホテル",
-        location: "場所未定",
-      },
+      { time: "9:00 [ET]", title: "朝食 in ホテル", kind: "食事" },
+      { time: "11:00 [ET]", title: "ホテルチェックアウト", kind: "ホテル" },
+      { time: "11:00〜17:00 [ET]", title: "自由時間", kind: "自由時間" },
+      { time: "17:00 [ET]", title: "空港チェックイン", kind: "チェックイン", memo: "BOS ターミナルA", mapUrl: "https://maps.app.goo.gl/iqtrFWj1f9nY8A2KA" },
+      { time: "18:10 [ET]", title: "搭乗ゲート", kind: "搭乗" },
+      { time: "18:40 [ET]", title: "フライト BOS → DFW", kind: "フライト", memo: "18:40 [ET] BOS発\n↓\n21:57 [CT] DFW着" },
+      { time: "22:30 [CT]", title: "移動", kind: "移動", memo: "車（友達）" },
+      { time: "23:00 [CT]", title: "ホテルチェックイン", kind: "ホテル" },
     ],
   },
   {
     date: "6/28",
     label: "GOLF Day",
     items: [
-      {
-        time: "9:00 [CT]",
-        title: "Fort Worth Stockyards",
-        kind: "📍 観光",
-        mapUrl: "https://share.google/EqhKercWdOUAytMy1",
-      },
-      {
-        time: "11:30 [CT]",
-        title: "テキサスBBQランチ",
-        kind: "🍖 食事",
-        memo: "候補1：Cooper's Old Time Pit Bar-B-Que / 候補2：Riscky's BBQ",
-        options: [
-          { label: "候補1: Cooper's Old Time Pit Bar-B-Que", mapUrl: "https://maps.app.goo.gl/4KNGY568cF7hUXkP6", buttonLabel: "Google Maps" },
-          { label: "候補2: Riscky's BBQ", mapUrl: "https://share.google/I6RJ64x90zuvPkO4O", buttonLabel: "Google Maps" },
-        ],
-      },
-      {
-        time: "13:30 [CT]",
-        title: "ゴルフ",
-        kind: "⛳ ゴルフ",
-        options: [
-          { label: "Texas Star Golf Course", url: "https://texasstar.cps.golf/onlineresweb/search-teetime?TeeOffTimeMin=0&TeeOffTimeMax=23.999722222222225", buttonLabel: "予約ページ" },
-          { label: "Bear Creek Golf Club", url: "https://arcisgolf.com/clubs/bear_creek_golf_club/home?utm_source=chatgpt.com", buttonLabel: "予約ページ" },
-        ],
-      },
-      {
-        time: "20:00 [CT]",
-        title: "カジノ",
-        kind: "🎰 カジノ",
-        location: "Choctaw Casino & Resort",
-        mapUrl: "https://maps.app.goo.gl/yvPExBzpzikLH3Hy6",
-      },
-      {
-        time: "時間未定",
-        title: "ホテル",
-        kind: "🏨 ホテル",
-        location: "未定",
-      },
+      { time: "9:00 [CT]", title: "Fort Worth Stockyards", kind: "観光", mapUrl: "https://share.google/EqhKercWdOUAytMy1" },
+      { time: "11:30 [CT]", title: "テキサスBBQランチ", kind: "食事", memo: "候補1：Cooper's Old Time Pit Bar-B-Que\n候補2：Riscky's BBQ", options: [
+        { label: "Cooper's Old Time Pit Bar-B-Que", mapUrl: "https://maps.app.goo.gl/4KNGY568cF7hUXkP6", buttonLabel: "Google Maps" },
+        { label: "Riscky's BBQ", mapUrl: "https://share.google/I6RJ64x90zuvPkO4O", buttonLabel: "Google Maps" },
+      ] },
+      { time: "13:30 [CT]", title: "ゴルフ", kind: "ゴルフ", options: [
+        { label: "Texas Star Golf Course", url: "https://texasstar.cps.golf/onlineresweb/search-teetime?TeeOffTimeMin=0&TeeOffTimeMax=23.999722222222225", buttonLabel: "予約ページ" },
+        { label: "Bear Creek Golf Club", url: "https://arcisgolf.com/clubs/bear_creek_golf_club/home?utm_source=chatgpt.com", buttonLabel: "予約ページ" },
+        { label: "CEDAR CREST", url: "https://www.golfcedarcrest.com/book-a-tee-time", buttonLabel: "予約ページ" },
+      ] },
+      { time: "20:00 [CT]", title: "カジノ", kind: "カジノ", location: "Choctaw Casino & Resort", mapUrl: "https://maps.app.goo.gl/yvPExBzpzikLH3Hy6" },
+      { time: "時間未定", title: "ホテル", kind: "ホテル", memo: "未定" },
     ],
   },
   {
     date: "6/29",
     label: "観戦Day3 ★",
     items: [
-      {
-        time: "7:00 [CT]",
-        title: "移動",
-        kind: "🚗 移動",
-      },
-      {
-        time: "12:00 [CT]",
-        title: "F2位 vs C1位",
-        kind: "⚽ 試合",
-        location: "NRGスタジアム",
-        venue: "会場: NRGスタジアム",
-        url: "https://www.fifa.com/ja/match-centre/match/17/285023/289287/400021516",
-        mapUrl: "https://maps.app.goo.gl/312VEhN9cPtHE8Xa7",
-      },
+      { time: "7:00 [CT]", title: "レンタカーピック＆移動", kind: "移動" },
+      { time: "11:00 [CT]", title: "入場", kind: "観光", venue: "NRGスタジアム", mapUrl: "https://maps.app.goo.gl/312VEhN9cPtHE8Xa7" },
+      { time: "12:00 [CT]", title: "キックオフ F2位 vs C1位", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289287/400021516" },
+      { time: "16:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Wingate by Wyndham Humble/HIA", mapUrl: "https://maps.app.goo.gl/a7tP5sipSTC28owc9" },
+      { time: "17:00 [CT]", title: "Space Center Houston", kind: "観光", mapUrl: "https://share.google/VNv9d4qSaUtCd9oOs" },
     ],
   },
   {
     date: "6/30",
     label: "帰国Day",
     items: [
-      {
-        time: "13:00 [CT]",
-        title: "Space Center Houston",
-        kind: "📍 観光",
-        mapUrl: "https://share.google/VNv9d4qSaUtCd9oOs",
-      },
-      {
-        time: "19:00 [CT]",
-        title: "フライト",
-        kind: "✈ フライト",
-        location: "IAH → HND",
-        memo: "20:12 [CT] IAH発 → 7/1（水）04:45 [JP] HND着",
-      },
-    ],
-  },
-  {
-    date: "7/1",
-    label: "予備日",
-    items: [
-      {
-        time: "終日",
-        title: "予備日",
-        kind: "📝 予備日",
-      },
+      { time: "9:30 [CT]", title: "空港チェックイン（しげじP）", kind: "チェックイン" },
+      { time: "11:00 [CT]", title: "搭乗ゲート（しげじP）", kind: "搭乗" },
+      { time: "11:35 [CT]", title: "フライト IAH → 日本", kind: "フライト", memo: "11:35 [CT] IAH発\n↓\n15:25 日本着" },
+      { time: "18:00 [CT]", title: "空港チェックイン（亮輔）", kind: "チェックイン", memo: "IAH ターミナルA", mapUrl: "https://maps.app.goo.gl/4RsQc9PJxjVWfFxw9" },
+      { time: "19:45 [CT]", title: "搭乗ゲート（亮輔）", kind: "搭乗" },
+      { time: "20:12 [CT]", title: "フライト IAH → HND", kind: "フライト", memo: "20:12 [CT] IAH発\n↓\n7/1（水）04:45 [JP] HND着" },
     ],
   },
 ];
 
-const nearbyCategories = ["レストラン", "コンビニ", "カフェ"] as const;
+const nearbyCategories = ["レストラン", "カフェ", "WC2026最新結果"] as const;
 
 const getDayThemeIcon = (label: string) => {
   if (/移動/.test(label)) return "✈";
@@ -245,27 +150,31 @@ const getDayThemeIcon = (label: string) => {
 const getItemIcon = (item: ScheduleItem) => {
   const text = `${item.title} ${item.kind ?? ""} ${item.venue ?? ""}`.toLowerCase();
 
+  if (/集合|チェックイン/.test(text)) return "📍";
+  if (/朝食|ランチ|夕食|食事|bbq/.test(text)) return "🍖";
+  if (/ラウンジ/.test(text)) return "☕";
+  if (/搭乗|搭乗ゲート|搭乗準備/.test(text)) return "🛫";
   if (/フライト|飛行機/.test(text)) return "✈";
-  if (/試合|vs/.test(text)) return "⚽";
+  if (/入国審査/.test(text)) return "🛂";
+  if (/移動|ピックアップ/.test(text)) return "🚗";
   if (/ホテル/.test(text)) return "🏨";
-  if (/ランチ|食事|bbq/.test(text)) return "🍖";
-  if (/移動/.test(text)) return "🚗";
   if (/自由時間/.test(text)) return "🕒";
+  if (/試合|vs/.test(text)) return "⚽";
   if (/観光|stockyards|space center/.test(text)) return "📍";
   if (/ゴルフ/.test(text)) return "⛳";
   if (/カジノ/.test(text)) return "🎰";
-  if (/予備日/.test(text)) return "📝";
 
   return "📅";
 };
 
 const getActionLabel = (item: ScheduleItem, type: "url" | "map") => {
-  if (type === "map") return "Google Maps";
-
   const text = `${item.title} ${item.kind ?? ""}`.toLowerCase();
 
+  if (type === "map") return "Google Maps";
+  if (/ラウンジ/.test(text)) return "ラウンジ情報";
   if (/試合|vs/.test(text)) return "マッチ情報";
   if (/ゴルフ|予約/.test(text)) return "予約ページ";
+  if (/シャトル/.test(text)) return "シャトルバス検索";
 
   return "詳細を見る";
 };
@@ -288,6 +197,12 @@ export default function Home() {
   const [now, setNow] = useState<Date>(new Date());
   const usdJpyRate = 157.2;
 
+  const travelSummary = [
+    { label: "日数", value: "7日間" },
+    { label: "主な移動", value: "NRT / LAX / DFW / BOS" },
+    { label: "観戦", value: "3試合" },
+  ];
+
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 60_000);
 
@@ -295,9 +210,10 @@ export default function Home() {
   }, []);
 
   const timeZones = [
-    { label: "JP", flag: "🇯🇵", timeZone: "Asia/Tokyo" },
-    { label: "CT", flag: "🇺🇸", timeZone: "America/Chicago" },
-    { label: "ET", flag: "🇺🇸", timeZone: "America/New_York" },
+    { label: "JP", name: "日本時間", flag: "🇯🇵", timeZone: "Asia/Tokyo" },
+    { label: "PST", name: "ロサンゼルス時間", flag: "🇺🇸", timeZone: "America/Los_Angeles" },
+    { label: "CT", name: "ダラス / ヒューストン時間", flag: "🇺🇸", timeZone: "America/Chicago" },
+    { label: "ET", name: "ボストン時間", flag: "🇺🇸", timeZone: "America/New_York" },
   ] as const;
 
   const formatTime = (timeZone: string) =>
@@ -357,11 +273,15 @@ export default function Home() {
     );
   };
 
+  const openWorldCupResults = () => {
+    window.location.href = "https://www.google.com/search?q=%E3%83%AF%E3%83%BC%E3%83%AB%E3%83%89%E3%82%AB%E3%83%83%E3%83%97+2026";
+  };
+
   return (
     <main className="min-h-screen bg-[linear-gradient(160deg,#ffffff_0%,#f7fbff_35%,#edf4ff_100%)] text-slate-900">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col pb-28">
         <section className="px-4 pt-4 sm:px-6 sm:pt-5">
-          <div className="grid gap-3 md:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid gap-3 md:grid-cols-[1.15fr_0.95fr_0.9fr]">
             <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -371,19 +291,33 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:gap-3 sm:overflow-visible">
+              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:gap-3 sm:overflow-visible md:flex-nowrap md:overflow-visible">
                 {timeZones.map((item) => (
                   <article
                     key={item.label}
-                    className="min-w-[96px] flex-1 rounded-[18px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-2.5 shadow-sm sm:min-w-0"
+                    className="min-w-[96px] shrink-0 rounded-[18px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-2.5 shadow-sm sm:min-w-0 sm:flex-1"
                   >
                     <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
                     <div className="mt-1 flex items-end gap-1.5">
                       <span className="text-base font-black text-slate-900">{item.flag}</span>
-                      <span className="text-base font-black text-slate-900">{formatTime(item.timeZone)}</span>
+                      <span className="text-sm font-black text-slate-900 sm:text-base">{formatTime(item.timeZone)}</span>
                     </div>
-                    <p className="mt-1 text-[10px] leading-4 text-slate-500">{item.label === "JP" ? "日本" : item.label === "CT" ? "ダラス" : "ボストン"}</p>
+                    <p className="mt-1 text-[10px] leading-4 text-slate-500">{item.name}</p>
                   </article>
+                ))}
+              </div>
+            </article>
+
+            <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
+              <p className="text-[11px] uppercase tracking-[0.25em] text-amber-700">Itinerary</p>
+              <h2 className="text-lg font-bold text-slate-900">旅行しおり</h2>
+              <p className="mt-2 text-sm text-slate-600">出発〜帰国までの主要な流れをひと目で確認できます。</p>
+              <div className="mt-4 space-y-3">
+                {travelSummary.map((item) => (
+                  <div key={item.label} className="rounded-[20px] border border-slate-200 bg-[linear-gradient(135deg,#fffef7_0%,#ffffff_100%)] p-3 shadow-sm">
+                    <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-800">{item.value}</p>
+                  </div>
                 ))}
               </div>
             </article>
@@ -577,10 +511,10 @@ export default function Home() {
             <button
               key={category}
               type="button"
-              onClick={() => openNearbySearch(category)}
+              onClick={() => (category === "WC2026最新結果" ? openWorldCupResults() : openNearbySearch(category))}
               className="flex flex-1 flex-col items-center rounded-2xl bg-slate-100 px-2 py-3 text-xs font-black text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-emerald-100 hover:text-emerald-800 sm:px-3 sm:py-3 sm:text-sm"
             >
-              <span className="text-base">{category === "レストラン" ? "🍽️" : category === "コンビニ" ? "🏪" : "☕"}</span>
+              <span className="text-base">{category === "レストラン" ? "🍽️" : category === "WC2026最新結果" ? "⚽" : "☕"}</span>
               <span>{category}</span>
             </button>
           ))}
