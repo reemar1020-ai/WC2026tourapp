@@ -280,16 +280,16 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] sm:gap-3 sm:overflow-visible md:flex-nowrap md:overflow-visible">
+              <div className="mt-4 grid grid-cols-4 gap-1">
                 {timeZones.map((item) => (
                   <article
                     key={item.label}
-                    className="min-w-[96px] shrink-0 rounded-[18px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-2.5 shadow-sm sm:min-w-0 sm:flex-1"
+                    className="min-w-0 flex-1 rounded-[18px] border border-slate-200 bg-[linear-gradient(135deg,#f8fafc_0%,#ffffff_100%)] p-2.5 shadow-sm"
                   >
                     <p className="text-[10px] uppercase tracking-[0.25em] text-slate-500">{item.label}</p>
                     <div className="mt-1 flex items-end gap-1.5">
-                      <span className="text-base font-black text-slate-900">{item.flag}</span>
-                      <span className="text-sm font-black text-slate-900 sm:text-base">{formatTime(item.timeZone)}</span>
+                      <span className="text-sm font-black text-slate-900">{item.flag}</span>
+                      <span className="text-sm font-black text-slate-900">{formatTime(item.timeZone)}</span>
                     </div>
                     <p className="mt-1 text-[10px] leading-4 text-slate-500">{item.name}</p>
                   </article>
@@ -412,7 +412,7 @@ export default function Home() {
                                           href={item.url}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
+                                          className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 max-w-full break-words allow-break"
                                         >
                                           {getActionLabel(item, "url")}
                                         </a>
@@ -422,7 +422,7 @@ export default function Home() {
                                           href={item.mapUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+                                          className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 max-w-full break-words allow-break"
                                         >
                                           {getActionLabel(item, "map")}
                                         </a>
@@ -440,7 +440,7 @@ export default function Home() {
                                                   href={option.url}
                                                   target="_blank"
                                                   rel="noopener noreferrer"
-                                                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700"
+                                                  className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 max-w-full break-words allow-break"
                                                 >
                                                   {option.buttonLabel ?? getActionLabel(item, "url")}
                                                 </a>
@@ -450,7 +450,7 @@ export default function Home() {
                                                   href={option.mapUrl}
                                                   target="_blank"
                                                   rel="noopener noreferrer"
-                                                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500"
+                                                  className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 max-w-full break-words allow-break"
                                                 >
                                                   {option.buttonLabel ?? getActionLabel(item, "map")}
                                                 </a>

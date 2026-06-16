@@ -24,3 +24,27 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Prevent horizontal scroll on small devices (iPhone Safari) */
+html,
+body,
+#__next {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Make images and iframes responsive */
+img,
+iframe,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility for long URLs / labels to wrap inside containers */
+.allow-break {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
