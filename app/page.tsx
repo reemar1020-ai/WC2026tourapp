@@ -30,106 +30,102 @@ const schedule: TravelDay[] = [
     date: "6/24",
     label: "移動Day",
     items: [
-      { time: "15:40 [JP]", title: "NRT 第1ターミナル集合", kind: "集合", mapUrl: "https://maps.app.goo.gl/kYstFtFUcgC7KocZA" },
-      { time: "16:00 [JP]", title: "肉料理やきすきやんま", kind: "食事", mapUrl: "https://maps.app.goo.gl/P95nLJRHeAAJnLdM7" },
-      { time: "16:40 [JP]", title: "空港チェックイン 第1ターミナル", kind: "チェックイン" },
-      { time: "17:00〜18:00 [JP]", title: "ラウンジ", kind: "ラウンジ", memo: "軽食あり", url: "https://www.saisoncard.co.jp/creditcard/benefits-service/lounge/" },
-      { time: "18:10 [JP]", title: "搭乗準備", kind: "搭乗" },
-      { time: "18:40 [JP]", title: "フライト NRT → LAX", kind: "フライト", memo: "18:40 [JP] NRT発\n↓\n12:50 [PST] LAX着" },
-      { time: "12:50〜14:00 [PST]", title: "USA入国審査", kind: "入国審査" },
-      { time: "14:00〜16:00 [PST]", title: "LAX ターミナルB ラウンジ", kind: "ラウンジ", memo: "軽食あり" },
-      { time: "16:00〜17:00 [PST]", title: "国内線乗り換え移動", kind: "移動", memo: "LAX ターミナルB → ターミナル3" },
-      { time: "17:00 [PST]", title: "空港チェックイン", kind: "チェックイン", memo: "LAX ターミナル3" },
-      { time: "17:00〜18:15 [PST]", title: "ラウンジ", kind: "ラウンジ", memo: "軽食あり" },
-      { time: "18:30 [PST]", title: "搭乗ゲート", kind: "搭乗" },
-      { time: "18:53 [PST]", title: "フライト LAX → DFW", kind: "フライト", memo: "18:53 [PST] LAX発\n↓\n23:59 [CT] DFW着" },
-      { time: "25:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Super 8 by Wyndham Irving/DFW Apt/North", mapUrl: "https://maps.app.goo.gl/suYUgd7VPLuMp2Qy9" },
+      { time: "15:40", title: "NRT 第1ターミナル集合", mapUrl: "https://maps.app.goo.gl/kYstFtFUcgC7KocZA" },
+      { time: "16:00", title: "肉料理やきすきやんま", mapUrl: "https://maps.app.goo.gl/P95nLJRHeAAJnLdM7" },
+      { time: "16:40", title: "空港チェックイン 第1ターミナル" },
+      { time: "17:00〜18:00", title: "ラウンジ", memo: "軽食あり", url: "https://www.saisoncard.co.jp/creditcard/benefits-service/lounge/" },
+      { time: "18:10", title: "搭乗準備" },
+      { time: "18:40", title: "NRT発 → 12:50 LAX着", kind: "フライト", memo: "18:40 [JP] NRT発\n↓\n12:50 [PST] LAX着" },
+      { time: "12:50〜14:00", title: "USA入国審査" },
+      { time: "14:00〜16:00", title: "LAX ターミナルB ラウンジ", memo: "軽食あり" },
+      { time: "16:00〜17:00", title: "国内線乗り換え移動", memo: "LAX ターミナルB → ターミナル3" },
+      { time: "17:00", title: "空港チェックイン LAX ターミナル3" },
+      { time: "17:00〜18:15", title: "ラウンジ", memo: "軽食あり" },
+      { time: "18:30", title: "搭乗ゲート" },
+      { time: "18:53", title: "LAX発 → 23:59 DFW着", kind: "フライト", memo: "18:53 [PST] LAX発\n↓\n23:59 [CT] DFW着" },
+      { time: "25:00", title: "ホテルチェックイン", location: "Holiday Inn Express & Suites DFW Airport Southwest - Euless", mapUrl: "https://maps.app.goo.gl/7bWPRhjLrQJmid7J9" },
     ],
   },
   {
     date: "6/25",
     label: "観戦Day1 ★",
     items: [
-      { time: "8:00 [CT]", title: "朝食", kind: "食事" },
-      { time: "9:00〜13:00 [CT]", title: "Texas Card House", kind: "自由時間", mapUrl: "https://maps.app.goo.gl/5VP6x6zZBeonB2LcA" },
-      { time: "13:00 [CT]", title: "友達ピックアップ", kind: "移動" },
-      { time: "13:00 [CT]", title: "ランチ Texas Roadhouse", kind: "食事", mapUrl: "https://maps.app.goo.gl/39fidkkuZXzis9Fr5" },
-      { time: "16:00 [CT]", title: "入場", kind: "観光", venue: "AT&Tスタジアム", mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6" },
-      { time: "18:00 [CT]", title: "キックオフ JPN vs SWE", kind: "試合", venue: "AT&Tスタジアム", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021471", mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6" },
-      { time: "21:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Super 8 by Wyndham Irving/DFW Apt/North", mapUrl: "https://maps.app.goo.gl/suYUgd7VPLuMp2Qy9" },
+      { time: "08:00", title: "朝食" },
+      { time: "09:00〜13:00", title: "Texas Card House", mapUrl: "https://maps.app.goo.gl/5VP6x6zZBeonB2LcA" },
+      { time: "13:00", title: "友達ピックアップ" },
+      { time: "13:00", title: "ランチ Texas Roadhouse", mapUrl: "https://maps.app.goo.gl/39fidkkuZXzis9Fr5" },
+      { time: "16:00", title: "AT&Tスタジアム入場", mapUrl: "https://maps.app.goo.gl/GWrpF7GaZuK4A11z6" },
+      { time: "18:00", title: "JPN vs SWE キックオフ", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021471" },
+      { time: "21:00", title: "ホテルチェックイン", location: "Holiday Inn Express & Suites DFW Airport Southwest - Euless", mapUrl: "https://maps.app.goo.gl/7bWPRhjLrQJmid7J9" },
     ],
   },
   {
     date: "6/26",
     label: "観戦Day2 ★",
     items: [
-      { time: "4:30 [CT]", title: "ホテルチェックアウト", kind: "ホテル" },
-      { time: "5:30 [CT]", title: "空港チェックイン", kind: "チェックイン", memo: "DFW ターミナルE", mapUrl: "https://maps.app.goo.gl/gKDHQDLEsCXWkV2V7" },
-      { time: "6:00 [CT]", title: "朝食 Drew Pearson's Sport 88", kind: "食事", mapUrl: "https://maps.app.goo.gl/oa4P6CnBCHLjGQRe8" },
-      { time: "6:45 [CT]", title: "搭乗ゲート", kind: "搭乗" },
-      { time: "07:05 [CT]", title: "フライト DFW → BOS", kind: "フライト", memo: "07:05 [CT] DFW発\n↓\n11:57 [ET] BOS着" },
-      { time: "12:30 [ET]", title: "移動", kind: "移動", memo: "Uber利用予定\n電車：要確認", options: [{ label: "シャトルバス検索", url: "https://www.google.com/search?q=BOS%E7%A9%BA%E6%B8%AF%E2%86%92Hampton+Inn+Boston+Logan+Airport+%E3%82%B7%E3%83%A3%E3%83%88%E3%83%AB%E3%83%90%E3%82%B9", buttonLabel: "シャトルバス検索" }] },
-      { time: "13:00 [ET]", title: "ホテルチェックイン", kind: "ホテル", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
-      { time: "13:00 [ET]", title: "移動", kind: "移動", memo: "Uber利用予定\n電車：要確認" },
-      { time: "14:00 [ET]", title: "入場", kind: "観光", venue: "ジレット・スタジアム", mapUrl: "https://maps.app.goo.gl/vM1JASkx3EV6YEDm8" },
-      { time: "15:00 [ET]", title: "キックオフ NOR vs FRA", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021489" },
-      { time: "19:00 [ET]", title: "夕食", kind: "食事" },
-      { time: "20:00 [ET]", title: "ホテル帰還", kind: "ホテル", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
+      { time: "04:30", title: "ホテルチェックアウト" },
+      { time: "05:30", title: "DFW ターミナルE 空港チェックイン", mapUrl: "https://maps.app.goo.gl/gKDHQDLEsCXWkV2V7" },
+      { time: "06:00", title: "朝食 Drew Pearson's Sport 88", mapUrl: "https://maps.app.goo.gl/oa4P6CnBCHLjGQRe8" },
+      { time: "06:45", title: "搭乗ゲート" },
+      { time: "07:05", title: "DFW発 → 11:57 BOS着", kind: "フライト", memo: "07:05 [CT] DFW発\n↓\n11:57 [ET] BOS着" },
+      { time: "12:30", title: "ホテルへ移動", memo: "移動手段：\n・Uber Taxi\n・シャトルバス" },
+      { time: "13:00", title: "ホテルチェックイン", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
+      { time: "13:00", title: "ジレットスタジアムへ移動", memo: "移動手段：\n・Uber Taxi\n・電車" },
+      { time: "14:00", title: "ジレットスタジアム入場", mapUrl: "https://maps.app.goo.gl/vM1JASkx3EV6YEDm8" },
+      { time: "15:00", title: "NOR vs FRA キックオフ", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289273/400021489" },
+      { time: "19:00", title: "夕食" },
+      { time: "20:00", title: "ホテル帰還", location: "Hampton Inn Boston Logan Airport", mapUrl: "https://maps.app.goo.gl/kDtMLkQ859AKpLst7" },
     ],
   },
   {
     date: "6/27",
     label: "ボストン観光Day",
     items: [
-      { time: "9:00 [ET]", title: "朝食 in ホテル", kind: "食事" },
-      { time: "11:00 [ET]", title: "ホテルチェックアウト", kind: "ホテル" },
-      { time: "11:00〜17:00 [ET]", title: "自由時間", kind: "自由時間" },
-      { time: "17:00 [ET]", title: "空港チェックイン", kind: "チェックイン", memo: "BOS ターミナルA", mapUrl: "https://maps.app.goo.gl/iqtrFWj1f9nY8A2KA" },
-      { time: "18:10 [ET]", title: "搭乗ゲート", kind: "搭乗" },
-      { time: "18:40 [ET]", title: "フライト BOS → DFW", kind: "フライト", memo: "18:40 [ET] BOS発\n↓\n21:57 [CT] DFW着" },
-      { time: "22:30 [CT]", title: "移動", kind: "移動", memo: "車（友達）" },
-      { time: "23:00 [CT]", title: "ホテルチェックイン", kind: "ホテル" },
+      { time: "09:00", title: "朝食（ホテル）" },
+      { time: "11:00", title: "ホテルチェックアウト" },
+      { time: "11:00〜17:00", title: "自由時間" },
+      { time: "17:00", title: "BOS ターミナルA 空港チェックイン", mapUrl: "https://maps.app.goo.gl/iqtrFWj1f9nY8A2KA" },
+      { time: "18:10", title: "搭乗ゲート" },
+      { time: "18:40", title: "BOS発 → 21:57 DFW着", kind: "フライト", memo: "18:40 [ET] BOS発\n↓\n21:57 [CT] DFW着" },
+      { time: "22:30", title: "移動（友達の車）" },
+      { time: "23:00", title: "ホテルチェックイン", location: "Holiday Inn Express & Suites DFW Airport Southwest - Euless", mapUrl: "https://maps.app.goo.gl/7bWPRhjLrQJmid7J9" },
     ],
   },
   {
     date: "6/28",
     label: "GOLF Day",
     items: [
-      { time: "9:00 [CT]", title: "Fort Worth Stockyards", kind: "観光", mapUrl: "https://share.google/EqhKercWdOUAytMy1" },
-      { time: "11:30 [CT]", title: "テキサスBBQランチ", kind: "食事", memo: "候補1：Cooper's Old Time Pit Bar-B-Que\n候補2：Riscky's BBQ", options: [
+      { time: "09:00", title: "Fort Worth Stockyards", mapUrl: "https://share.google/EqhKercWdOUAytMy1" },
+      { time: "11:30", title: "テキサスBBQランチ", memo: "候補①\nCooper's Old Time Pit Bar-B-Que\n\n候補②\nRiscky's BBQ", options: [
         { label: "Cooper's Old Time Pit Bar-B-Que", mapUrl: "https://maps.app.goo.gl/4KNGY568cF7hUXkP6", buttonLabel: "Google Maps" },
         { label: "Riscky's BBQ", mapUrl: "https://share.google/I6RJ64x90zuvPkO4O", buttonLabel: "Google Maps" },
       ] },
-      { time: "13:30 [CT]", title: "ゴルフ", kind: "ゴルフ", options: [
-        { label: "Texas Star Golf Course", url: "https://texasstar.cps.golf/onlineresweb/search-teetime?TeeOffTimeMin=0&TeeOffTimeMax=23.999722222222225", buttonLabel: "予約ページ" },
-        { label: "Bear Creek Golf Club", url: "https://arcisgolf.com/clubs/bear_creek_golf_club/home?utm_source=chatgpt.com", buttonLabel: "予約ページ" },
-        { label: "CEDAR CREST", url: "https://www.golfcedarcrest.com/book-a-tee-time", buttonLabel: "予約ページ" },
-      ] },
-      { time: "20:00 [CT]", title: "カジノ", kind: "カジノ", location: "Choctaw Casino & Resort", mapUrl: "https://maps.app.goo.gl/yvPExBzpzikLH3Hy6" },
-      { time: "時間未定", title: "ホテル", kind: "ホテル", memo: "未定" },
+      { time: "12:30", title: "Bear Creek Golf Club へ移動" },
+      { time: "13:22", title: "ゴルフスタート", location: "Bear Creek Golf Club", url: "https://arcisgolf.com/clubs/bear_creek_golf_club/home", mapUrl: "https://share.google/CcacpJxXFvC0hOpOR" },
+      { time: "20:00", title: "Choctaw Casino & Resort", mapUrl: "https://maps.app.goo.gl/yvPExBzpzikLH3Hy6" },
     ],
   },
   {
     date: "6/29",
     label: "観戦Day3 ★",
     items: [
-      { time: "7:00 [CT]", title: "レンタカーピック＆移動", kind: "移動" },
-      { time: "11:00 [CT]", title: "入場", kind: "観光", venue: "NRGスタジアム", mapUrl: "https://maps.app.goo.gl/312VEhN9cPtHE8Xa7" },
-      { time: "12:00 [CT]", title: "キックオフ F2位 vs C1位", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289287/400021516" },
-      { time: "16:00 [CT]", title: "ホテルチェックイン", kind: "ホテル", location: "Wingate by Wyndham Humble/HIA", mapUrl: "https://maps.app.goo.gl/a7tP5sipSTC28owc9" },
-      { time: "17:00 [CT]", title: "Space Center Houston", kind: "観光", mapUrl: "https://share.google/VNv9d4qSaUtCd9oOs" },
+      { time: "07:00", title: "レンタカーピックアップ・移動" },
+      { time: "11:00", title: "NRGスタジアム入場", mapUrl: "https://maps.app.goo.gl/312VEhN9cPtHE8Xa7" },
+      { time: "12:00", title: "F2位 vs C1位 キックオフ", kind: "試合", url: "https://www.fifa.com/ja/match-centre/match/17/285023/289287/400021516" },
+      { time: "16:00", title: "ホテルチェックイン", location: "Wingate by Wyndham Humble/HIA", mapUrl: "https://maps.app.goo.gl/a7tP5sipSTC28owc9" },
+      { time: "17:00", title: "Space Center Houston", mapUrl: "https://share.google/VNv9d4qSaUtCd9oOs" },
     ],
   },
   {
     date: "6/30",
     label: "帰国Day",
     items: [
-      { time: "9:30 [CT]", title: "空港チェックイン（しげじP）", kind: "チェックイン" },
-      { time: "11:00 [CT]", title: "搭乗ゲート（しげじP）", kind: "搭乗" },
-      { time: "11:35 [CT]", title: "フライト IAH → 日本", kind: "フライト", memo: "11:35 [CT] IAH発\n↓\n15:25 日本着" },
-      { time: "18:00 [CT]", title: "空港チェックイン（亮輔）", kind: "チェックイン", memo: "IAH ターミナルA", mapUrl: "https://maps.app.goo.gl/4RsQc9PJxjVWfFxw9" },
-      { time: "19:45 [CT]", title: "搭乗ゲート（亮輔）", kind: "搭乗" },
-      { time: "20:12 [CT]", title: "フライト IAH → HND", kind: "フライト", memo: "20:12 [CT] IAH発\n↓\n7/1（水）04:45 [JP] HND着" },
+      { time: "09:30", title: "空港チェックイン（しげじ）" },
+      { time: "11:00", title: "搭乗ゲート（しげじ）" },
+      { time: "11:35", title: "IAH発 → 15:25 日本着（しげじ）", kind: "フライト" },
+      { time: "18:00", title: "IAH ターミナルA 空港チェックイン（亮輔）", mapUrl: "https://maps.app.goo.gl/4RsQc9PJxjVWfFxw9" },
+      { time: "19:45", title: "搭乗ゲート（亮輔）" },
+      { time: "20:12", title: "IAH発 → 7/1 04:45 HND着（亮輔）", kind: "フライト" },
     ],
   },
 ];
@@ -273,12 +269,7 @@ export default function Home() {
         <section className="px-4 pt-3 sm:px-6 sm:pt-4">
           <div className="grid gap-3 md:grid-cols-[1.1fr_0.9fr] md:gap-4">
             <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.25em] text-sky-700">World Clock</p>
-                  <h2 className="text-lg font-bold text-slate-900">現在時刻</h2>
-                </div>
-              </div>
+              <div className="hidden"></div>
 
               <div className="mt-4 grid grid-cols-4 gap-1">
                 {timeZones.map((item) => (
@@ -298,8 +289,6 @@ export default function Home() {
             </article>
 
             <article className="rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-[0_18px_40px_rgba(15,23,42,0.10)] backdrop-blur md:p-5">
-              <p className="text-[11px] uppercase tracking-[0.25em] text-emerald-700">Exchange</p>
-              <h2 className="text-lg font-bold text-slate-900">ドル円レート</h2>
               <div className="mt-3 rounded-[24px] border border-emerald-100 bg-emerald-50 p-4 shadow-sm">
                 <p className="text-xs uppercase tracking-[0.25em] text-emerald-800">USD / JPY</p>
                 <p className="mt-2 text-3xl font-black text-emerald-900">1ドル = {usdJpyRate.toFixed(2)}円</p>
@@ -310,12 +299,7 @@ export default function Home() {
 
         <section className="px-4 sm:px-6">
           <div className="rounded-[30px] border border-slate-200/90 bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.12)] backdrop-blur-xl md:p-5">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-sky-700">Schedule</p>
-                <h2 className="text-lg font-bold text-slate-900">旅行しおり</h2>
-              </div>
-            </div>
+            <div className="hidden"></div>
 
             <div className="mt-4 flex flex-col gap-3">
               {schedule.map((day) => {
@@ -332,25 +316,19 @@ export default function Home() {
                           : "border-slate-200/90 bg-white hover:-translate-y-0.5 hover:border-sky-200 hover:bg-[linear-gradient(135deg,#ffffff_0%,#f8fbff_50%,#f0fdfa_100%)] hover:shadow-[0_16px_28px_rgba(15,23,42,0.08)]"
                       }`}
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center gap-2">
-                            <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">DATE</p>
-                            <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">{day.date}</span>
-                          </div>
-                          <p className="mt-2 text-2xl font-black tracking-[0.03em] text-slate-900 sm:text-[28px]">{day.date}（{getWeekdayLabel(day.date)}）</p>
-                          <p className="mt-1 text-base font-semibold text-slate-800">{getDayThemeIcon(day.label)} {day.label}</p>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[11px] uppercase tracking-[0.28em] text-slate-400">DATE</p>
+                          <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-semibold text-sky-700">{day.date}</span>
                         </div>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-700 shadow-sm">🗓 {day.items.length}件</span>
+                        <p className="mt-2 text-2xl font-black tracking-[0.03em] text-slate-900 sm:text-[28px]">{day.date}（{getWeekdayLabel(day.date)}）</p>
+                        <p className="mt-1 text-base font-semibold text-slate-800">{getDayThemeIcon(day.label)} {day.label}</p>
                       </div>
                     </button>
 
                     {selected && (
                       <article className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)] p-4 shadow-inner sm:p-5">
-                        <div className="mb-3 flex items-center justify-between gap-2 rounded-[20px] border border-sky-100 bg-[linear-gradient(135deg,#eff6ff_0%,#ffffff_70%,#ecfeff_100%)] px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm sm:px-4">
-                          <span>旅程カード</span>
-                          <span>{day.items.length} 件</span>
-                        </div>
+
 
                         <div className="space-y-3">
                           {day.items.map((item, index) => {
